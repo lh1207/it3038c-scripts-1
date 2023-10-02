@@ -1,3 +1,4 @@
+#This script will take the user's birthdate and calculate their age in seconds
 
 import datetime
 

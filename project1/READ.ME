@@ -1,0 +1,7 @@
+# Project One Documentation:
+
+# This script is designed to display the amount of storage on any hard drive a user has connected to their computer.  The user will be prompted for the name of the drive they want to view. After entering the drive letter, the script takes the input and will get the contents of the hard drive and present it to the user.
+
+# The script starts by using the write-output command to prompt the user to input the hard drive letter they want to view the contents of. Next, it will take the input and store it in the driveLetter variable. The variable will then be used with Get-wmiObject to grab the contents of the hard drive the user selected in the driveLetter variable, where the output is then stored in the variable disk. Next, the FreeSPace command is used with the variable $disk in disk.FreeSpace to find the amount of free storage ¬¬¬¬¬¬¬¬¬¬and dividing by 1GB to get the output in GB and is stored in the variable available_storage. Finally, a Write-Host is used to display the output of the available storage in GBs for the user to see.
+
+#  can use the script by either opening and running the program in VSCode or another IDE. All the user needs to do is type in the drive letter followed by a colon and the script will display the available storage of the selected hard drive. 

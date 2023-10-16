@@ -1,4 +1,8 @@
+# Introduction
+
 Wikipedia module is a add-in for Python that allows users to acces the Wikipedia API without having to connect to website in a browser or command prompt. 
+
+# Instlalation
 
 Before we start, you will need to download the Wikipedia add-in
 
@@ -8,6 +12,7 @@ Once you have downloaded it, import the Wikipedia module
 import wikipedia
 ```
 
+# Example Commands
 You can search for key words on Wikipedia by using the wikipedia.search
 
 ``` python

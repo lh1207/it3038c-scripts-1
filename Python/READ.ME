@@ -1,29 +1,39 @@
 # Wikipedia module is a add-in for Python that allows users to acces the Wikipedia API without having to connect to website in a browser or command prompt. 
 
-# Before we start, you will need to download the Wikipedia add-in
+# Before we start, you will need to download the Wikipedia add-in using pip
+
+pip install wikipedia
 
 # Once you have downloaded it, import the Wikipedia module
 
 import wikipedia
 
-# You can search for key words on Wikipedia by using the wikipedia.search
+# The Lab7 script takes the user's input and will use Wikipedia API to dissplay information from Wikipedia without connecting to it!
+
+#Once you have downloaded Lab7.py, you cna open it using VSCode or another IDe that supports Python.
+
+#Upon opening the script, you will be prompted for input on the keywords you want to enter. The script will take the input and display information from Wikipedia.
+
+# The script will give you three outputs using some of the Wikipedia commands.
+
+#wikipedia.search will give you keywords on the input you typed in.
 
 results = wikipedia.search('Cincinnati Bengals')
 
 print(results)
 
-# You can find a summary of the keyword, which will provide more information in the output.
+# wikipedia.summary will display the summary of a Wikipedia page based on the characters you typed in.
 
 summary = wikipedia.summary("Cincinnati Bengals")
 print(summary)
 
-# You can also filter the output by the number of sentences
+# The output can also be filtered by number of sentences
 
 summary = wikipedia.summary("Cincinnati Bengals", sentences = 4)
 
 print(summary)
 
-#Finally, if you want to display the full contents of a Wikipedia page, you can do so with wikipedia.page
+#wikipedia.page will display the page information.
 
 wiki_page = wikipedia.page("Cincinnati Bengals").content
 

@@ -2,7 +2,7 @@
 
 Wikipedia module is a add-in for Python that allows users to acces the Wikipedia API without having to connect to website in a browser or command prompt. 
 
-# Instlalation
+# Installation
 
 Before we start, you will need to download the Wikipedia add-in
 

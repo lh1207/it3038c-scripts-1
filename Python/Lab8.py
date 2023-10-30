@@ -1,11 +1,30 @@
+# Import the libnraries o scrape from the boks.toscrape.com website
+import requests
 from bs4 import BeautifulSoup
-import requests, re 
- 
-data = requests.get("https://www.reebok.com/p/100033359/flexagon-energy-4-men-s-training-shoes").content
-soup = BeautifulSoup(data, 'html.parser')
-span = soup.find("h1", {"class":"tag_h1_light--2sTWu  product-wrapper-title--1ky4m"}) 
-title = span.text 
-span = soup.find("span", {"class":"tag_h4--1gGXW  product-price--nXytc"}) 
-price = span.text 
-print("Item %s has price %s" % (title, price))
+
+# Send request to website
+response = requests.get("https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html")
+html_content = response.text
+
+# Parse HTMl content 
+soup = BeautifulSoup(html_content, 'html.parser')
+
+# Extract book name 
+book_title_div = soup.find("div", {"class": "col-sm-6 product_main"})
+
+book_title = book_title_div.find("h1")
+
+title = book_title.text
+
+# Extract book price
+price_element_div = soup.find("div", {"class": "col-sm-6 product_main"})
+
+price_element = price_element_div.find("p", {"class": "price_color"})
+
+price = price_element.text
+
+# Print results of the web scraping
+print("Book:", title)
+print("Price:", price)
+
     

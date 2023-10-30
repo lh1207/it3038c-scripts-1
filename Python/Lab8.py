@@ -1,4 +1,4 @@
-# Import the libnraries o scrape from the boks.toscrape.com website
+# Import the Python libraries to scrape from the books.toscrape.com website
 import requests
 from bs4 import BeautifulSoup
 

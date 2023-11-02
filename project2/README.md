@@ -7,7 +7,7 @@ This script will provide information about the hard drive you choose that is con
 ## Getting Started
 Before you start, make sure you run this command in Powershell or in another IDE that supports PowerShell scripts (.ps1). No additional software is needed.
 
-### Installation
+## Installation
 
 An IDE that supports .ps1 files will need to eb downloaded. Once the script is downloaded onto the computer, run it in the IDe of your choice. I prefer PowerShell ISE.
 
@@ -17,6 +17,6 @@ Run the script and you will be prompted with input on the drive you want the scr
 
 Afterwards, the script will list information about the selected hard drive. Run the script again if you want to check anoher connected hard drive. 
 
-## Enjoy!!
+Enjoy!!
 
 

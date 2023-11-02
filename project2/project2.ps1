@@ -51,16 +51,26 @@ Write-Host ""
 
 Write-Host "The $driveletter drive has about $available_storage GB left."
 
-# Calculate the percentage used of the disk
+#Calculate the percentage used of the disk
 
-$used_storage = [math]::Round(($disk.Size - $disk.FreeSpace) / 1GB, 2)
+$used_storage = [math]::Round(($disk.Size - $disk.FreeSpace) / 1GB)
 
-$used_percentage [math]::Round(($used_storage / $total_storage)* 100)
+$used_percentage = [math]::Round(($used_storage / $total_storage)* 100)
 
-#Shows the percentage of available storage
+#Calculate the available storage
 
-$storage_percent = 100 - $used_storage
+$available_percent = 100 - $used_percentage
 
-Start-Sleep -Seconds 1
+#Shows the percentage of used and available storage
 
-Write-Host "That is roughly $storage_percent%."
+Start-Sleep -Seconds 2
+
+Write-Host ""
+
+Write-Host "That is roughly $used_percentage% used and $available_percent% left."
+
+Start-Sleep -Seconds 3
+
+Write-Host ""
+
+Write-Host "Hope you've found the information valuable!"

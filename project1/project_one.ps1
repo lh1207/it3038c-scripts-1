@@ -8,9 +8,17 @@ $driveletter = Read-Host -Prompt "Please enter the hard drive letter you want to
 
 $disk = Get-WmiObject -Class Win32_LogicalDisk -Filter "DeviceID='$driveletter'"
 
-#Declare files variable to display all contents of a file
+# Declare variable to display total storage 
+
+# $total_storage = 
+
+#Declare files variable to display available storage space
 
 $available_storage = $($disk.FreeSpace / 1GB)
+
+#Display information about the selected hard drive
+
+Write-Host "Here is sone information about the ${driveletter} drive:"
 
 #Display the contents of the selected drive
 

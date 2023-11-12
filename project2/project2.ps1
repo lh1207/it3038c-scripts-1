@@ -1,75 +1,60 @@
-﻿#Add space before first prompt
-
+﻿# Add space before first prompt
 Write-Host ""
 
 Write-Output "This script will display information about your selected hard drive."
 
-# Add delay before the next message and prompt
-
-Start-Sleep -Seconds 3
-
 # Add space between prompts
 Write-Host ""
 
-#Declare read-host variable for the user to select input
+# List all available drives on the system
+$drives = Get-PSDrive -PSProvider FileSystem
 
-$driveletter = Read-Host -Prompt "Please enter the hard drive letter you want to look at (make sure to include a colon)"
+# Display a prompt to select a drive
+Write-Host "Available drives:"
+$drives | ForEach-Object { Write-Host $_.Name }
 
-#Display all storage information based on selected drive
+$driveletter = Read-Host -Prompt "Please enter the hard drive letter you want to look at"
 
-$disk = Get-WmiObject -Class Win32_LogicalDisk -Filter "DeviceID='$driveletter'"
+# Check if the entered drive letter is valid
+if ($drives.Name -notcontains $driveletter) {
+  Write-Host "Invalid drive letter. Please select a valid drive."
+  exit
+}
 
-#Declare files variable to display available storage space
+# Display all storage information based on the selected drive
+$disk = Get-PSDrive -Name $driveletter
 
-$available_storage = [math]::Round($($disk.FreeSpace / 1GB))
-
-#Display information about the selected hard drive
-
+# Display information about the selected hard drive
 Write-Host ""
-
 Write-Host "Here is some information about the ${driveletter} drive:"
 
-#Add a delay before showing the first result
-
-Start-Sleep -Seconds 3
-
 # Display the total storage of the selected drive
-
-$total_storage =  [math]::Round($disk.Size /1GB)
-
+$total_storage = [math]::Round(($disk.Used + $disk.Free) / 1GB)
 Write-Host ""
-
 Write-Host "The $driveletter drive has about $total_storage GB of total storage."
 
-#Delay the time before the next result
+# Calculate the percentage used of the disk, handling zero total storage
+if ($total_storage -ne 0) {
+  $used_storage = [math]::Round($disk.Used / 1GB)
+  $used_percentage = [math]::Round(($used_storage / $total_storage) * 100)
+}
+else {
+  $used_storage = 0
+  $used_percentage = 0
+}
 
-Start-Sleep -Seconds 3
-
-#Display the contents of the selected drive
-
-Write-Host ""
-
-Write-Host "The $driveletter drive has about $available_storage GB left."
-
-#Calculate the percentage used of the disk
-
-$used_storage = [math]::Round(($disk.Size - $disk.FreeSpace) / 1GB)
-
-$used_percentage = [math]::Round(($used_storage / $total_storage)* 100)
-
-#Calculate the available storage
-
+# Calculate the available storage
+$available_storage = [math]::Round($disk.Free / 1GB)
 $available_percent = 100 - $used_percentage
 
-#Shows the percentage of used and available storage
+# Display the contents of the selected drive
+Write-Host ""
+Write-Host "The $driveletter drive has about $available_storage GB left."
 
-Start-Sleep -Seconds 2
-
+# Shows the percentage of used and available storage
 Write-Host ""
 
 Write-Host "That is roughly $used_percentage% used and $available_percent% left."
-
-Start-Sleep -Seconds 3
 
 Write-Host ""
 
